@@ -1,5 +1,11 @@
 pipeline {
     agent any
+    
+    // Explicitly tell Jenkins where Docker and Kubectl are installed
+    environment {
+        PATH = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+    }
+    
     stages {
         stage('Code Analysis') {
             steps {
