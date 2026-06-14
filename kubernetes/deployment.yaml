@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telemetry-deployment
+  labels:
+    app: omnigrid-telemetry
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: omnigrid-telemetry
+  template:
+    metadata:
+      labels:
+        app: omnigrid-telemetry
+    spec:
+      containers:
+      - name: telemetry-api
+        image: omnigrid-telemetry:v1
+        imagePullPolicy: Never  # Tells K8s to use the local image we just built
+        ports:
+        - containerPort: 5000
